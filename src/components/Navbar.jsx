@@ -20,12 +20,12 @@ function Navbar() {
                         <p className={pathMathRoute('/') ? 'navbarListItemNameActive' : 'navbarListItemName'} >Explore</p>
                     </li>
 
-                    <li className="navbarListItem" onClick={() => navigate('/offer')}>
-                        <OfferIcon fill={pathMathRoute('/offer') ? '#2c2c2c' : '#8f8f8f'} 
+                    <li className="navbarListItem" onClick={() => navigate('/offers')}>
+                        <OfferIcon fill={pathMathRoute('/offers') ? '#2c2c2c' : '#8f8f8f'} 
                             width='36px'
                             height='36px' />
 
-                        <p className={pathMathRoute('/') ? 'navbarListItemNameActive' :
+                        <p className={pathMathRoute('/offers') ? 'navbarListItemNameActive' :
                              'navbarListItemName'}>Offer</p>
                     </li>
 
@@ -33,7 +33,7 @@ function Navbar() {
                         <PersonOutlineIcon fill={pathMathRoute('/profile') ? '#2c2c2c' : '#8f8f8f'} width='36px'
                             height='36px' />
                         <p className={
-                            pathMathRoute('/')
+                            pathMathRoute('/profile')
                                 ? 'navbarListItemNameActive' : 'navbarListItemName'}> Profile</p>
                     </li>
                 </ul>
