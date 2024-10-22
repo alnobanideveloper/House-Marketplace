@@ -10,6 +10,7 @@ import Offers from "./pages/Offers";
 import ForgotPassword from "./pages/ForgotPassword";
 import Explore from "./pages/Explore";
 import Navbar from "./components/Navbar";
+import CreateListing from "./pages/CreateListing";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/profile" element={<Profile/>}/>
         </Route>
         <Route path="/forgot-pasword" element={<ForgotPassword/>}/>
+        <Route path="/create-listing" element={<CreateListing/>}/>
         <Route path="/Sign-in" element={<SignIn/>}/>
         <Route path="/Sign-up" element={<SignUp/>}/>
       </Routes>
