@@ -10,7 +10,7 @@ export default function ListingItem({ listing, id ,onDelete }) {
             <li className="categoryListing">
                 <Link to={`/category/${listing.type}/${id}`}
                     className="categoryListingLink">
-                    <img src={listing.imageUrls[0]} alt={listing.name}
+                    <img src={listing.imgUrls[0]} alt={listing.name}
                         className="categoryListingImg" />
 
                     <div className="categoryListingDetails">
