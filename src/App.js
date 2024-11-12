@@ -10,6 +10,7 @@ import Offers from "./pages/Offers";
 import ForgotPassword from "./pages/ForgotPassword";
 import Explore from "./pages/Explore";
 import Navbar from "./components/Navbar";
+import Listing from "./pages/Listing";
 import CreateListing from "./pages/CreateListing";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path="/profile" element={<PrivateRoute/>} > {/*private Route that takes a child to render it if authorized */}
           <Route path="/profile" element={<Profile/>}/>
         </Route>
+        <Route path="/category/:categoryName/:listingId" element={<Listing/>}/>
         <Route path="/forgot-pasword" element={<ForgotPassword/>}/>
         <Route path="/create-listing" element={<CreateListing/>}/>
         <Route path="/Sign-in" element={<SignIn/>}/>
