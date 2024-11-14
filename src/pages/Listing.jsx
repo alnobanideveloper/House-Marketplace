@@ -72,11 +72,11 @@ function Listing() {
                     <li>{listing.parking && 'Parking Spot'}</li>
                     <li>{listing.funished && 'Funished'}</li>
                     <p className="listingLocationTitle">Location</p>
-                    {/* {} */}
-                    
+                    {/* { Map } */}
+
                     {
                     auth.currentUser?.uid !== listing.userRef && (
-                        <Link 
+                        <Link className='primaryButton'
                             to={`/contact/${listing.userRef}?listingName=${listing.name}&listingLocation=${listing.location}`}>
                                 Contact Landlord
                         </Link>
