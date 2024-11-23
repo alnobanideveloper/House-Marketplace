@@ -325,16 +325,17 @@ button {
   background-color: #ffffff !important;
 }
 
+.swiper {
+  width: 100%;
+  height: 300px; /* Or any desired height */
+}
+
 .swiperSlideDiv {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-.swiperSlideImg {
-  width: 100%;
-  object-fit: cover;
-}
 
 .swiperSlideText {
   color: #ffffff;
