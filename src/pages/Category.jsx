@@ -8,6 +8,7 @@ import ListingItem from "../components/ListingItem"
 const Category = () => {
     const [listings, setListings] = useState(null)
     const [loading, setLoading] = useState(true)
+    const [lastFetchedListing , setLastFetchedListing] = useState(null);
 
     const params = useParams()
 
@@ -20,11 +21,15 @@ const Category = () => {
                     listingsRef,
                     where('type', '==', params.categoryName),
                     orderBy('timestamp', 'desc'),
-                    limit(10)
+                    limit(5)
                 );
 
                 //Execute query ,get documents for that specific query
                 const querySnap = await getDocs(q);
+
+                const lastVisible = querySnap.docs[querySnap.docs.length-1];
+                setLastFetchedListing(lastVisible);
+
                 const listings = querySnap.docs.map((doc) => ({
                     data: doc.data(),
                     id: doc.id
@@ -42,6 +47,38 @@ const Category = () => {
         fetchListings();
     }, [])
 
+    //pagination / load more
+    const onMoreFetchListings = async () => {
+        try {
+            const listingsRef = collection(db, 'listings');
+            const q = query(
+                listingsRef,
+                where('type', '==', params.categoryName),
+                orderBy('timestamp', 'desc'),
+                startAfter(lastFetchedListing),
+                limit(5)
+            );
+
+            //Execute query ,get documents for that specific query
+            const querySnap = await getDocs(q);
+
+            const lastVisible = querySnap.docs[querySnap.docs.length-1];
+            setLastFetchedListing(lastVisible );
+
+            const listings = querySnap.docs.map((doc) => ({
+                data: doc.data(),
+                id: doc.id
+            })
+            );
+
+            setListings((prevState)=> [...prevState , ...listings]);
+            setLoading(false);
+
+        } catch (error) {
+            toast.error("Could not fetch listings")
+            console.log(error.message);
+        }
+    }
 
     return (
         <div className="category">
@@ -67,6 +104,16 @@ const Category = () => {
                                         </h3>
                                 </ul>
                             </main>
+
+                            <br />
+                            <br />
+
+                            {
+                                lastFetchedListing && (
+                                    <p className="loadMore" onClick={onMoreFetchListings}>Load More</p>
+                                )
+                            }
+
                         </>) : (
                         <p>No listings for {params.categoryName}</p>)
             }
